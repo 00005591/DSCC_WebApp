@@ -56,6 +56,7 @@ namespace DSCC_CW1_5591_Front.Controllers
             {
                 client.BaseAddress = new Uri("https://localhost:44367/api/Product");
                 var postProduct = client.PostAsJsonAsync<Product>("product", product);
+
                 postProduct.Wait();
                 var postResult = postProduct.Result;
                 if (postResult.IsSuccessStatusCode)
