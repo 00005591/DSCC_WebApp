@@ -1,0 +1,8 @@
+version: 0.0
+os: windows
+files:
+  - source: \
+    destination: c:\webapp_5591
+hooks:
+  Install:
+    - location: \install.ps1

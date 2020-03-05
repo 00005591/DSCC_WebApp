@@ -24,7 +24,7 @@ namespace DSCC_CW1_5591_Front.Controllers
             {
                 var resultList = new List<Product>();
                 var client = new HttpClient();
-                var getDataTask = client.GetAsync("https://localhost:44367/api/Product").ContinueWith(response => {
+                var getDataTask = client.GetAsync("http://ec2-18-208-150-171.compute-1.amazonaws.com/api/Product").ContinueWith(response => {
                     var result = response.Result;
                     if (result.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -54,7 +54,7 @@ namespace DSCC_CW1_5591_Front.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44367/api/Product");
+                client.BaseAddress = new Uri("http://ec2-18-208-150-171.compute-1.amazonaws.com/api/Product");
                 var postProduct = client.PostAsJsonAsync<Product>("product", product);
 
                 postProduct.Wait();
@@ -74,7 +74,7 @@ namespace DSCC_CW1_5591_Front.Controllers
             Product product = null;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44367/api/");
+                client.BaseAddress = new Uri("http://ec2-18-208-150-171.compute-1.amazonaws.com/api/");
                 var responseTask = client.GetAsync("product/" + id.ToString());
                 responseTask.Wait();
                 var result = responseTask.Result;
@@ -94,7 +94,7 @@ namespace DSCC_CW1_5591_Front.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44367/api/Product/" + product.ProductId);
+                client.BaseAddress = new Uri("http://ec2-18-208-150-171.compute-1.amazonaws.com/api/Product/" + product.ProductId);
                 var putTask = client.PutAsJsonAsync<Product>("", product);
                 putTask.Wait();
                  var result = putTask.Result;
@@ -110,7 +110,7 @@ namespace DSCC_CW1_5591_Front.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44367/api/");
+                client.BaseAddress = new Uri("http://ec2-18-208-150-171.compute-1.amazonaws.com/api/");
                 var deleteTask = client.DeleteAsync("product/" + id.ToString());
                 var result = deleteTask.Result;
                 if (result.IsSuccessStatusCode)
